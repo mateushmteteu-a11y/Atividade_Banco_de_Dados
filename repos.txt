@@ -1,0 +1,19 @@
+CONSULTA DE DADOS:
+
+1- Como o C# recebe os dados retornados por um SELECT?
+. O C# recebe os dados pelo DataReader.
+
+2- Como percorrer os resultados de uma consulta?
+. Os resultados são percorridos com WHILE e READ().
+
+3- Como transformar os dados retornados pelo banco em objetos de uma classe?
+. Os dados são colocados em objetos de uma classe.
+----------------------------------------------------------------------------------------------------------------
+
+SEGURANÇA:
+
+1- O que são parâmetros em comandos SQL e por que eles são importantes?
+. Privilégios são permissões para acessar e modificar o banco.
+
+2- Explique também o que pode acontecer quando um sistema monta comandos SQL diretamente utilizando textos digitados pelo usuário.
+. Textos deretos podem causar SQL INJECTION, permitindo comandos maliciosos no banco.
