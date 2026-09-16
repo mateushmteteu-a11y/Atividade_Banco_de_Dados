@@ -551,19 +551,21 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\antonio61215126\\.nuget\\packages\\": {}
+    "C:\\Users\\thomas61118746\\.nuget\\packages\\": {}
+
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+      "projectUniqueName": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
       "projectName": "Atividade_Banco_de_Dados",
-      "projectPath": "C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
-      "packagesPath": "C:\\Users\\antonio61215126\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\obj\\",
+      "projectPath": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+      "packagesPath": "C:\\Users\\thomas61118746\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\antonio61215126\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\thomas61118746\\AppData\\Roaming\\NuGet\\NuGet.Config"
+
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -891,13 +893,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\obj\\project.nuget.cache : 'U' is an invalid escapable character within a JSON string. The string should be correctly escaped. Path: $.projectFilePath | LineNumber: 4 | BytePositionInLine: 25."
-    }
-  ]
+  }
 }
