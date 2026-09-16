@@ -891,5 +891,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\obj\\project.nuget.cache : 'U' is an invalid escapable character within a JSON string. The string should be correctly escaped. Path: $.projectFilePath | LineNumber: 4 | BytePositionInLine: 25."
+    }
+  ]
 }

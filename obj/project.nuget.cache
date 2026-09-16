@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Q982pfL+LLE=",
+  "dgSpecHash": "SEisMfS0vsc=",
   "success": true,
   "projectFilePath": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
   "expectedPackageFiles": [
@@ -17,5 +17,15 @@
     "C:\\Users\\thomas61118746\\.nuget\\packages\\system.windows.extensions\\10.0.8\\system.windows.extensions.10.0.8.nupkg.sha512",
     "C:\\Users\\thomas61118746\\.nuget\\packages\\zstdsharp.port\\0.8.8\\zstdsharp.port.0.8.8.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problem reading the cache file C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\obj\\project.nuget.cache : 'U' is an invalid escapable character within a JSON string. The string should be correctly escaped. Path: $.projectFilePath | LineNumber: 4 | BytePositionInLine: 25.",
+      "projectPath": "C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+      "targetGraphs": []
+    }
+  ]
 }
