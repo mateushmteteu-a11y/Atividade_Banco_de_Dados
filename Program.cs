@@ -30,6 +30,7 @@ while (opcao != 0)
             Console.Write("Digite o título: ");
             string titulo = Console.ReadLine();
 
+
             Console.Write("Digite o gênero: ");
             string genero = Console.ReadLine();
 
@@ -227,4 +228,5 @@ while (opcao != 0)
         Console.ReadLine();
     }
 }
+
 

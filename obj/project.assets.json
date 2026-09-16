@@ -552,6 +552,7 @@
   },
   "packageFolders": {
     "C:\\Users\\thomas61118746\\.nuget\\packages\\": {}
+
   },
   "project": {
     "version": "1.0.0",
@@ -564,6 +565,7 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\thomas61118746\\AppData\\Roaming\\NuGet\\NuGet.Config"
+
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -891,13 +893,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\obj\\project.nuget.cache : 'U' is an invalid escapable character within a JSON string. The string should be correctly escaped. Path: $.projectFilePath | LineNumber: 4 | BytePositionInLine: 25."
-    }
-  ]
+  }
 }
