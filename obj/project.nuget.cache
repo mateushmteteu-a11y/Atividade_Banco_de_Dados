@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Vg1doffKsUk=",
+  "dgSpecHash": "KsgOW3ObZhU=",
   "success": true,
   "projectFilePath": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
   "expectedPackageFiles": [
@@ -20,15 +20,5 @@
     "C:\\Users\\pedro61685786\\.nuget\\packages\\system.windows.extensions\\10.0.8\\system.windows.extensions.10.0.8.nupkg.sha512",
     "C:\\Users\\pedro61685786\\.nuget\\packages\\zstdsharp.port\\0.8.8\\zstdsharp.port.0.8.8.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\obj\\project.nuget.cache: '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
-      "projectPath": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }
