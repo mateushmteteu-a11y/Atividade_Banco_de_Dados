@@ -1,6 +1,22 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+    "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+        "projectName": "Atividade_Banco_de_Dados",
+        "projectPath": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+        "packagesPath": "C:\\Users\\pedro61685786\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\pedro61685786\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
     "C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj": {}
   },
   "projects": {
@@ -15,6 +31,7 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\thomas61118746\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 319b820834b183f2288799ff4916d6a320632c66
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -47,6 +64,10 @@
             "MySql.Data": {
               "target": "Package",
               "version": "[26.7.0, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.6.2, )"
             }
           },
           "imports": [
