@@ -1,5 +1,17 @@
 public class Filme
 {
+    private int id;
+    public int Id
+    {
+        get
+        {
+            return id;
+        }
+        set
+        {
+            id = value;
+        }
+    }
     private string titulo;
     public string Titulo
     {
@@ -24,8 +36,8 @@ public class Filme
             genero = value;
         }
     }
-    private DateTime ano;
-    public DateTime Ano
+    private DateOnly ano;
+    public DateOnly Ano
     {
         get
         {
@@ -36,14 +48,15 @@ public class Filme
             ano = value;
         }
     }
-    public Filme(string titulo, string genero, DateTime ano)
+    public Filme(int id, string titulo, string genero, DateOnly ano)
     {
+        this.id = id;
         this.titulo = titulo;
         this.genero = genero;
         this.ano = ano;
     }
     public override string ToString()
     {
-    return $"Título: {this.titulo} | Genero: {this.genero} | Ano: {this.ano}";
+    return $"Id: {this.id} | Título: {this.titulo} | Genero: {this.genero} | Ano: {this.ano}";
     }
     }

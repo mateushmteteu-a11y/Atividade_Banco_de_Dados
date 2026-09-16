@@ -14,7 +14,7 @@ class Program
             Console.WriteLine("=== SISTEMA CRUD DE FILME ===");
             Console.WriteLine("1 - Cadastrar filme");
             Console.WriteLine("2 - Listar Todos os filmes");
-            Console.WriteLine("3 - Atulizar filme");
+            Console.WriteLine("3 - Atualizar filme");
             Console.WriteLine("4 - Deletar filme");
             Console.WriteLine("0 - Sair");
             Console.Write("Escolha uma opção: ");
@@ -30,7 +30,7 @@ class Program
                     Listar();
                     break;
                 case "3":
-                    //Atualizar();
+                    Atualizar();
                     break;
                 case "4":
                     //Deletar();
@@ -58,9 +58,9 @@ class Program
         string? exGenero = Console.ReadLine();
 
         Console.Write("Data de Lançamento (DD/MM/AAAA): ");
-        DateTime exAno = DateTime.Parse(Console.ReadLine());
+        DateOnly exAno = DateOnly.Parse(Console.ReadLine());
 
-        Filme novoFilme = new Filme(exTitulo, exGenero, exAno);
+        Filme novoFilme = new Filme(0, exTitulo, exGenero, exAno);
 
         using (MySqlConnection conexao = new MySqlConnection(connectionString))
         {
@@ -98,7 +98,7 @@ class Program
             try
             {
                 conexao.Open();
-                string sql = "SELECT titulo, genero, ano FROM filme";
+                string sql = "SELECT id, titulo, genero, ano FROM filme";
 
                 using (MySqlCommand comando = new MySqlCommand(sql, conexao))
                 {
@@ -112,11 +112,12 @@ class Program
                         {
                             while (leitor.Read())
                             {
+                                int idBanco = Convert.ToInt32(leitor["id"]);
                                 string t = leitor["titulo"].ToString();
                                 string g = leitor["genero"].ToString();
-                                DateTime a = Convert.ToDateTime(leitor["ano"]);
-
-                                Filme f = new Filme(t, g, a);
+                                DateTime dataBanco = Convert.ToDateTime(leitor["ano"]);
+                                DateOnly a = DateOnly.FromDateTime(dataBanco);
+                                Filme f = new Filme(idBanco, t, g, a);
                                 Console.WriteLine(f.ToString());
                             }
                         }
@@ -132,4 +133,59 @@ class Program
         Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
         Console.ReadKey();
     }
+    static void Atualizar()
+{
+    Console.Clear();
+    Console.WriteLine("--- ATUALIZAR FILME PELO ID (UPDATE) ---");
+
+    
+    Console.Write("Digite o ID do filme que deseja atualizar: ");
+    int idAlvo = Convert.ToInt32(Console.ReadLine());
+
+    Console.Write("Digite o NOVO Titulo: ");
+    string? novoTitulo = Console.ReadLine();
+
+    Console.Write("Digite o NOVO Gênero: ");
+    string? novoGenero = Console.ReadLine();
+
+    Console.Write("Digite a NOVA Data de Lançamento (DD/MM/AAAA): ");
+    DateOnly novoAno = DateOnly.Parse(Console.ReadLine());
+
+    using (MySqlConnection conexao = new MySqlConnection(connectionString))
+    {
+        try
+        {
+            conexao.Open();
+            
+            string sql = "UPDATE filme SET titulo = @titulo, genero = @genero, ano = @ano WHERE id = @id";
+
+            using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@titulo", novoTitulo);
+                comando.Parameters.AddWithValue("@genero", novoGenero);
+                comando.Parameters.AddWithValue("@ano", novoAno.ToDateTime(TimeOnly.MinValue));
+                comando.Parameters.AddWithValue("@id", idAlvo);
+
+                int linhasAfetadas = comando.ExecuteNonQuery();
+
+                if (linhasAfetadas > 0)
+                {
+                    Console.WriteLine($"\nSucesso! O filme de ID {idAlvo} foi atualizado.");
+                }
+                else
+                {
+                    Console.WriteLine("\nNenhum filme encontrado com esse ID.");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\nErro ao atualizar: {ex.Message}");
+        }
+    }
+
+    Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+    Console.ReadKey();
+}
+
 }
