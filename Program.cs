@@ -1,42 +1,29 @@
-﻿using System;
-using MySql.Data.MySqlClient; 
+﻿using MySql.Data.MySqlClient;
 
 class Program
 {
+    
+
     static void Main(string[] args)
     {
-       
+
         string connectionString = "Server=localhost;Database=ronaldo;Uid=root;Pwd=Senac2026;";
 
-       
         using (MySqlConnection conexao = new MySqlConnection(connectionString))
         {
             try
             {
-                Console.WriteLine("Tentando conectar ao MySQL...");
-                
-               
+                Console.WriteLine("Conectando ao banco de dados...");
                 conexao.Open();
-                Console.WriteLine("Conexão realizada com sucesso! 🎉");
+                Console.WriteLine("Conexão realizada com sucesso!\n");
 
-              
-                string query = "SELECT VERSION();";
-                using (MySqlCommand comando = new MySqlCommand(query, conexao))
-                {
-                    string versao = comando.ExecuteScalar()?.ToString();
-                    Console.WriteLine($"Versão do MySQL: {versao}");
-                }
-            }
-            catch (MySqlException ex)
-            {
-              
-                Console.WriteLine($"Erro de banco de dados: {ex.Message}");
+                string sql = "Comando do sql aqui";
+                
             }
             catch (Exception ex)
             {
-                
-                Console.WriteLine($"Erro geral: {ex.Message}");
+                Console.WriteLine($"Erro ao conectar: {ex.Message}");
             }
         }
     }
-}
+};
