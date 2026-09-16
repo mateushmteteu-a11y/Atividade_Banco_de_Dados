@@ -1,0 +1,47 @@
+1. Como C# realiza uma conexão com um banco de dados?
+O C# conecta-se ao banco instanciando uma classe de conexão específica fornecida pelo driver do banco (que herda de DbConnection). O fluxo básico de funcionamento ocorre da seguinte forma:
+
+Definição da String de Conexão: Especificam-se os parâmetros de acesso (servidor, porta, usuário, senha, nome do banco).
+
+Instanciação do Objeto de Conexão: Cria-se a instância passando a string de conexão.
+
+Abertura da Conexão: Chama-se o método .Open() (ou .OpenAsync()).
+
+Execução de Comandos: Utiliza-se a conexão aberta para enviar comandos SQL ou procedures.
+
+Fechamento da Conexão: A conexão é encerrada com .Close()/.Dispose() para liberar os recursos do pool de conexões.
+
+2. Qual biblioteca/driver é utilizado pelo banco escolhido?
+Para conectar o C# ao PostgreSQL, o driver/biblioteca padrão de mercado é o Npgsql (pacote NuGet Npgsql).
+
+(Caso utilize outro banco de dados, os drivers equivalentes seriam: Microsoft.Data.SqlClient para SQL Server ou MySqlConnector para MySQL).
+
+3. Como essa biblioteca é adicionada ao projeto?
+A biblioteca é adicionada gerenciando os pacotes NuGet do projeto. Isso pode ser feito de três formas principais:
+
+Via Interface Visual do Visual Studio:
+
+Clique com o botão direito no projeto no Solution Explorer.
+
+Selecione Manage NuGet Packages...
+
+Busque por Npgsql e clique em Install.
+
+Via Linha de Comando (.NET CLI):
+Execute o comando no terminal na pasta do projeto:
+
+Bash
+dotnet add package Npgsql
+Via Edição Direta do .csproj:
+Adicione a tag no arquivo do projeto:
+
+XML
+<ItemGroup>
+  <PackageReference Include="Npgsql" Version="8.0.*" />
+</ItemGroup>
+4. O que é uma string de conexão?
+Uma Connection String (string de conexão) é uma cadeia de texto formatada contendo todas as informações e parâmetros de configuração necessários para que a aplicação localize, se autentique e se conecte a um servidor de banco de dados específico.
+
+Ela atua como a "chave de acesso" e o "endereço" do banco de dados.
+
+Estrutura típica de uma Connection String (PostgreSQL):
