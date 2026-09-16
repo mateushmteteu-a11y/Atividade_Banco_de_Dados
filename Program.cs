@@ -30,10 +30,10 @@ class Program
                     Listar();
                     break;
                 case "3":
-                    Atualizar();
+                    //Atualizar();
                     break;
                 case "4":
-                    Deletar();
+                    //Deletar();
                     break;
                 case "0":
                     continuar = false;
@@ -87,4 +87,49 @@ class Program
 
         Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
         Console.ReadKey();
-    }}
+    }
+    static void Listar()
+    {
+        Console.Clear();
+        Console.WriteLine("--- LISTA DE FILMES ---");
+
+        using (MySqlConnection conexao = new MySqlConnection(connectionString))
+        {
+            try
+            {
+                conexao.Open();
+                string sql = "SELECT titulo, genero, ano FROM filme";
+
+                using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+                {
+                    using (MySqlDataReader leitor = comando.ExecuteReader())
+                    {
+                        if (!leitor.HasRows)
+                        {
+                            Console.WriteLine("Nenhum filme encontrado.");
+                        }
+                        else
+                        {
+                            while (leitor.Read())
+                            {
+                                string t = leitor["titulo"].ToString();
+                                string g = leitor["genero"].ToString();
+                                DateTime a = Convert.ToDateTime(leitor["ano"]);
+
+                                Filme f = new Filme(t, g, a);
+                                Console.WriteLine(f.ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nErro ao listar: {ex.Message}");
+            }
+        }
+
+        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+        Console.ReadKey();
+    }
+}
