@@ -33,7 +33,7 @@ class Program
                     Atualizar();
                     break;
                 case "4":
-                    //Deletar();
+                    Deletar();
                     break;
                 case "0":
                     continuar = false;
@@ -187,5 +187,45 @@ class Program
     Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
     Console.ReadKey();
 }
+static void Deletar()
+{
+    Console.Clear();
+    Console.WriteLine("--- DELETAR FILME PELO ID (DELETE) ---");
 
+    Console.Write("Digite o ID do filme que deseja apagar permanentemente: ");
+    int idAlvo = Convert.ToInt32(Console.ReadLine());
+
+    using (MySqlConnection conexao = new MySqlConnection(connectionString))
+    {
+        try
+        {
+            conexao.Open();
+            
+            string sql = "DELETE FROM filme WHERE id = @id";
+
+            using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@id", idAlvo);
+
+                int linhasAfetadas = comando.ExecuteNonQuery();
+
+                if (linhasAfetadas > 0)
+                {
+                    Console.WriteLine($"\nSucesso! O filme com ID {idAlvo} foi excluído do banco de dados.");
+                }
+                else
+                {
+                    Console.WriteLine("\nNenhum filme foi encontrado com esse ID.");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\nErro ao deletar: {ex.Message}");
+        }
+    }
+
+    Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+    Console.ReadKey();
+}
 }

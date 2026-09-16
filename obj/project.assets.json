@@ -740,16 +740,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\pedro61685786\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\antonio61215126\\.nuget\\packages\\": {}
->>>>>>> 319b820834b183f2288799ff4916d6a320632c66
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
       "projectName": "Atividade_Banco_de_Dados",
       "projectPath": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
@@ -758,16 +753,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pedro61685786\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
-      "projectName": "Atividade_Banco_de_Dados",
-      "projectPath": "C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
-      "packagesPath": "C:\\Users\\antonio61215126\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\antonio61215126\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Atividade_Banco_de_Dados\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\antonio61215126\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> 319b820834b183f2288799ff4916d6a320632c66
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -1099,5 +1084,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\obj\\project.nuget.cache: '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
+    }
+  ]
 }
