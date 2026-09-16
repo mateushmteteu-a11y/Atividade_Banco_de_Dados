@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4EZccBcXs5o=",
+  "dgSpecHash": "Q982pfL+LLE=",
   "success": true,
   "projectFilePath": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
   "expectedPackageFiles": [
@@ -16,7 +16,6 @@
     "C:\\Users\\thomas61118746\\.nuget\\packages\\system.security.permissions\\10.0.8\\system.security.permissions.10.0.8.nupkg.sha512",
     "C:\\Users\\thomas61118746\\.nuget\\packages\\system.windows.extensions\\10.0.8\\system.windows.extensions.10.0.8.nupkg.sha512",
     "C:\\Users\\thomas61118746\\.nuget\\packages\\zstdsharp.port\\0.8.8\\zstdsharp.port.0.8.8.nupkg.sha512"
-
   ],
   "logs": []
 }
