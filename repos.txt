@@ -1,4 +1,5 @@
 CONEXÃO:
+
 1- Através de uma biblioteca/driver que criar comandos para possibilidar essa conexão.
 
 2- MySqlConnector.
@@ -8,6 +9,11 @@ CONEXÃO:
 4- É uma string que são colocados dados do banco de dados para o sistema conseguir conetar a ele.
 
 5- O servidor,o banco, o usuário e a senha.
+
+COMANDO SQL:
+
+1-Através do string sql
+
 CONSULTA DE DADOS:
 
 1- Como o C# recebe os dados retornados por um SELECT?
