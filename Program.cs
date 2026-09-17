@@ -16,6 +16,7 @@ class Program
             Console.WriteLine("2 - Listar Todos os filmes");
             Console.WriteLine("3 - Atualizar filme");
             Console.WriteLine("4 - Deletar filme");
+            Console.WriteLine("5 - Buscar por nome do filme");
             Console.WriteLine("0 - Sair");
             Console.Write("Escolha uma opção: ");
             
@@ -35,6 +36,9 @@ class Program
                 case "4":
                     Deletar();
                     break;
+                case "5":
+                    BuscarPorNome();
+                    break;
                 case "0":
                     continuar = false;
                     Console.WriteLine("\nSaindo do sistema... Até logo!");
@@ -52,7 +56,7 @@ class Program
         Console.WriteLine("--- NOVO CADASTRO ---");
 
         Console.Write("Título do Filme: ");
-        string? exTitulo = Console.ReadLine();
+        string? exTitulo = Console.ReadLine();//Readline pega o valor escrito
 
         Console.Write("Gênero: ");
         string? exGenero = Console.ReadLine();
@@ -62,20 +66,20 @@ class Program
 
         Filme novoFilme = new Filme(0, exTitulo, exGenero, exAno);
 
-        using (MySqlConnection conexao = new MySqlConnection(connectionString))
+        using (MySqlConnection conexao = new MySqlConnection(connectionString))//cria conexão
         {
             try
             {
                 conexao.Open();
-                string sql = "INSERT INTO filme (titulo, genero, ano) VALUES (@titulo, @genero, @ano)";
+                string sql = "INSERT INTO filme (titulo, genero, ano) VALUES (@titulo, @genero, @ano)";//cria o camando para ser usado no banco
                 
-                using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+                using (MySqlCommand comando = new MySqlCommand(sql, conexao))//prepara o comando ao mysql
                 {
-                    comando.Parameters.AddWithValue("@titulo", novoFilme.Titulo);
+                    comando.Parameters.AddWithValue("@titulo", novoFilme.Titulo);//atribui os valores
                     comando.Parameters.AddWithValue("@genero", novoFilme.Genero);
-                    comando.Parameters.AddWithValue("@ano", novoFilme.Ano);
+                    comando.Parameters.AddWithValue("@ano", novoFilme.Ano.ToDateTime(TimeOnly.MinValue));
 
-                    comando.ExecuteNonQuery();
+                    comando.ExecuteNonQuery();//envia e executa o comando no mysql
                     Console.WriteLine($"\n{novoFilme.Titulo} foi cadastrado no MySQL.");
                 }
             }
@@ -228,4 +232,59 @@ static void Deletar()
     Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
     Console.ReadKey();
 }
+static void BuscarPorNome()
+{
+    Console.Clear();
+    Console.WriteLine("--- BUSCAR FILME POR NOME ---");
+
+    Console.Write("Digite o nome (ou parte do nome) do filme: ");
+    string pesquisa = Console.ReadLine() ?? "";
+
+    using (MySqlConnection conexao = new MySqlConnection(connectionString))
+    {
+        try
+        {
+            conexao.Open();
+            // O LIKE junto com o % permite buscar termos parciais (ex: "Matrix" acha "The Matrix")
+            string sql = "SELECT id, titulo, genero, ano FROM filme WHERE titulo LIKE @pesquisa";
+
+            using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+            {
+                // O "%" + pesquisa + "%" faz o MySQL buscar o texto em qualquer parte do título
+                comando.Parameters.AddWithValue("@pesquisa", "%" + pesquisa + "%");
+
+                using (MySqlDataReader leitor = comando.ExecuteReader())
+                {
+                    if (!leitor.HasRows)
+                    {
+                        Console.WriteLine("\nNenhum filme encontrado com esse termo.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n--- Filmes Encontrados ---");
+                        while (leitor.Read())
+                        {
+                            int id = Convert.ToInt32(leitor["id"]);
+                            string t = leitor["titulo"].ToString() ?? "";
+                            string g = leitor["genero"].ToString() ?? "";
+                            DateTime dataBanco = Convert.ToDateTime(leitor["ano"]);
+                            DateOnly a = DateOnly.FromDateTime(dataBanco);
+
+                            Filme f = new Filme(id, t, g, a);
+                            Console.WriteLine(f.ToString());
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\nErro ao buscar: {ex.Message}");
+        }
+    }
+
+    Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+    Console.ReadKey();
+}
+
 }
