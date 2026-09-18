@@ -1,15 +1,15 @@
-public class Filme
+public class Filmes
 {
     public int Id { get; set; }
     public string Titulo { get; set; }
     public string Genero { get; set; }
     public int Ano { get; set; }
 
-    public Filme()
+    public Filmes()
     {
     }
 
-    public Filme(string titulo, string genero, int ano)
+    public Filmes(string titulo, string genero, int ano)
     {
         Titulo = titulo;
         Genero = genero;

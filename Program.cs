@@ -1,232 +1,352 @@
 ﻿using MySql.Data.MySqlClient;
 
-Conexao conexao = new Conexao();
+class Program
+{
+    static string connectionString = "Server=localhost;Database=ronaldo;Uid=root;Pwd=Senac2026;";
 
-int opcao = -1;
+    static void Main(string[] args)
+    {
+        bool continuar = true;
 
-while (opcao != 0)
+        while (continuar)
+        {
+            Console.Clear();//limpa as coisas eu pessoalmento amei
+            Console.WriteLine("=== SISTEMA CRUD DE FILME ===");
+            Console.WriteLine("1 - Cadastrar filme");
+            Console.WriteLine("2 - Listar Todos os filmes");
+            Console.WriteLine("3 - Atualizar filme");
+            Console.WriteLine("4 - Deletar filme");
+            Console.WriteLine("5 - Buscar por nome do filme");
+            Console.WriteLine("0 - Sair");
+            Console.Write("Escolha uma opção: ");
+            
+            string opcao = Console.ReadLine();
+
+            switch (opcao)
+            {
+                case "1":
+                    Cadastrar();
+                    break;
+                case "2":
+                    Listar();
+                    break;
+                case "3":
+                    Atualizar();
+                    break;
+                case "4":
+                    Deletar();
+                    break;
+                case "5":
+                    BuscarPorNome();
+                    break;
+                case "0":
+                    continuar = false;
+                    Console.WriteLine("\nSaindo do sistema... Até logo!");
+                    break;
+                default:
+                    Console.WriteLine("\nOpção inválida! Pressione qualquer tecla para tentar novamente.🫂🧐😭🥶⛈️🧑‍🦼‍➡️😉🧑‍🎄🥙🚎🚑💘¯\\_( ͡° ͜ʖ ͡°)_/¯");
+                    Console.ReadKey();//tem que aperta uma tecla para o sistema continua gostei tambem
+                    break;
+            }
+        }
+    }
+    static void Cadastrar()
+    {
+        Console.Clear();
+        Console.WriteLine("--- NOVO CADASTRO ---");
+
+        string? exTitulo;
+        while (true)
+        {
+        Console.Write("Título do Filme: ");
+        exTitulo = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(exTitulo))
+        {
+            break; 
+        }
+        Console.WriteLine(" O título do filme não pode ficar em branco! Tente novamente.");
+        }
+
+        
+        string? exGenero;
+        while (true)
+        {
+        Console.Write("Gênero: ");
+        exGenero = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(exGenero))
+        {
+            break;
+        }
+        Console.WriteLine("O gênero do filme não pode ficar em branco! Tente novamente.");
+        }
+
+
+        Console.Write("Data de Lançamento (DD/MM/AAAA): ");
+        DateOnly exAno = DateOnly.Parse(Console.ReadLine());
+
+        Filme novoFilme = new Filme(0, exTitulo, exGenero, exAno);
+
+        using (MySqlConnection conexao = new MySqlConnection(connectionString))//cria conexão
+        {
+            try
+            {
+                conexao.Open();
+                string sql = "INSERT INTO filme (titulo, genero, ano) VALUES (@titulo, @genero, @ano)";//cria o camando para ser usado no banco
+                
+                using (MySqlCommand comando = new MySqlCommand(sql, conexao))//prepara o comando ao mysql
+                {
+                    comando.Parameters.AddWithValue("@titulo", novoFilme.Titulo);//atribui os valores
+                    comando.Parameters.AddWithValue("@genero", novoFilme.Genero);
+                    comando.Parameters.AddWithValue("@ano", novoFilme.Ano.ToDateTime(TimeOnly.MinValue));
+
+                    comando.ExecuteNonQuery();//envia e executa o comando no mysql
+                    Console.WriteLine($"\n{novoFilme.Titulo} foi cadastrado no MySQL.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nErro ao salvar: {ex.Message}");
+            }
+        }
+
+        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+        Console.ReadKey();
+    }
+    static void Listar()
+    {
+        Console.Clear();
+        Console.WriteLine("--- LISTA DE FILMES ---");
+
+        using (MySqlConnection conexao = new MySqlConnection(connectionString))
+        {
+            try
+            {
+                conexao.Open();
+                string sql = "SELECT id, titulo, genero, ano FROM filme";
+
+                using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+                {
+                    using (MySqlDataReader leitor = comando.ExecuteReader())
+                    {
+                        if (!leitor.HasRows)
+                        {
+                            Console.WriteLine("Nenhum filme encontrado.");
+                        }
+                        else
+                        {
+                            while (leitor.Read())
+                            {
+                                int idBanco = Convert.ToInt32(leitor["id"]);
+                                string t = leitor["titulo"].ToString();
+                                string g = leitor["genero"].ToString();
+                                DateTime dataBanco = Convert.ToDateTime(leitor["ano"]);
+                                DateOnly a = DateOnly.FromDateTime(dataBanco);
+                                Filme f = new Filme(idBanco, t, g, a);
+                                Console.WriteLine(f.ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nErro ao listar: {ex.Message}");
+            }
+        }
+
+        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+        Console.ReadKey();
+    }
+    static void Atualizar()
 {
     Console.Clear();
+    Console.WriteLine("--- ATUALIZAR FILME PELO ID (UPDATE) ---");
 
-    Console.WriteLine("===========================");
-    Console.WriteLine("      SISTEMA DE FILMES");
-    Console.WriteLine("===========================");
-    Console.WriteLine("1 - Cadastrar filme");
-    Console.WriteLine("2 - Listar filmes");
-    Console.WriteLine("3 - Buscar filme");
-    Console.WriteLine("4 - Atualizar filme");
-    Console.WriteLine("5 - Excluir filme");
-    Console.WriteLine("0 - Sair");
-    Console.WriteLine("===========================");
-    Console.Write("Escolha uma opção: ");
+    
+    Console.Write("Digite o ID do filme que deseja atualizar: ");
+    int idAlvo = Convert.ToInt32(Console.ReadLine());
 
-    try
+    Console.Clear();
+        Console.WriteLine("--- NOVO CADASTRO ---");
+
+        string? novoTitulo;
+        while (true)
+        {
+        Console.Write("Título do Filme: ");
+        novoTitulo = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(novoTitulo))
+        {
+            break; 
+        }
+        Console.WriteLine(" O título do filme não pode ser vazio.");
+        }
+
+        
+        string? novoGenero;
+        while (true)
+        {
+        Console.Write("Gênero: ");
+        novoGenero = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(novoGenero))
+        {
+            break;
+        }
+        Console.WriteLine("O gênero do filme não pode ser vazio.");
+        }
+
+
+        Console.Write("Data de Lançamento (DD/MM/AAAA): ");
+        DateOnly novoAno = DateOnly.Parse(Console.ReadLine());
+
+
+    using (MySqlConnection conexao = new MySqlConnection(connectionString))
     {
-        opcao = Convert.ToInt32(Console.ReadLine());
-
-        // CADASTRAR
-        if (opcao == 1)
+        try
         {
-            Console.Write("Digite o título: ");
-            string titulo = Console.ReadLine();
+            conexao.Open();
+            
+            string sql = "UPDATE filme SET titulo = @titulo, genero = @genero, ano = @ano WHERE id = @id";
 
-
-            Console.Write("Digite o gênero: ");
-            string genero = Console.ReadLine();
-
-            Console.Write("Digite o ano: ");
-            int ano = Convert.ToInt32(Console.ReadLine());
-
-            MySqlConnection banco = conexao.Conectar();
-
-            banco.Open();
-
-            string sql = "INSERT INTO filmes (titulo, genero, ano) VALUES (@titulo, @genero, @ano)";
-
-            MySqlCommand comando = new MySqlCommand(sql, banco);
-
-            comando.Parameters.AddWithValue("@titulo", titulo);
-            comando.Parameters.AddWithValue("@genero", genero);
-            comando.Parameters.AddWithValue("@ano", ano);
-
-            comando.ExecuteNonQuery();
-
-            banco.Close();
-
-            Console.WriteLine("Filme cadastrado com sucesso!");
-        }
-
-        // LISTAR
-        else if (opcao == 2)
-        {
-            MySqlConnection banco = conexao.Conectar();
-
-            banco.Open();
-
-            string sql = "SELECT * FROM filmes";
-
-            MySqlCommand comando = new MySqlCommand(sql, banco);
-
-            MySqlDataReader leitor = comando.ExecuteReader();
-
-            Console.WriteLine("\n===== FILMES =====");
-
-            while (leitor.Read())
+            using (MySqlCommand comando = new MySqlCommand(sql, conexao))
             {
-                Filme filme = new Filme();
+                comando.Parameters.AddWithValue("@titulo", novoTitulo);
+                comando.Parameters.AddWithValue("@genero", novoGenero);
+                comando.Parameters.AddWithValue("@ano", novoAno.ToDateTime(TimeOnly.MinValue));
+                comando.Parameters.AddWithValue("@id", idAlvo);
 
-                filme.Id = Convert.ToInt32(leitor["id"]);
-                filme.Titulo = leitor["titulo"].ToString();
-                filme.Genero = leitor["genero"].ToString();
-                filme.Ano = Convert.ToInt32(leitor["ano"]);
+                int linhasAfetadas = comando.ExecuteNonQuery();
 
-                Console.WriteLine(filme);
-            }
-
-            banco.Close();
-        }
-
-        // BUSCAR
-        else if (opcao == 3)
-        {
-            Console.Write("Digite o ID do filme: ");
-            int id = Convert.ToInt32(Console.ReadLine());
-
-            MySqlConnection banco = conexao.Conectar();
-
-            banco.Open();
-
-            string sql = "SELECT * FROM filmes WHERE id = @id";
-
-            MySqlCommand comando = new MySqlCommand(sql, banco);
-
-            comando.Parameters.AddWithValue("@id", id);
-
-            MySqlDataReader leitor = comando.ExecuteReader();
-
-            if (leitor.Read())
-            {
-                Filme filme = new Filme();
-
-                filme.Id = Convert.ToInt32(leitor["id"]);
-                filme.Titulo = leitor["titulo"].ToString();
-                filme.Genero = leitor["genero"].ToString();
-                filme.Ano = Convert.ToInt32(leitor["ano"]);
-
-                Console.WriteLine("\nFilme encontrado:");
-                Console.WriteLine(filme);
-            }
-            else
-            {
-                Console.WriteLine("Filme não encontrado.");
-            }
-
-            banco.Close();
-        }
-
-        // ATUALIZAR
-        else if (opcao == 4)
-        {
-            Console.Write("Digite o ID do filme: ");
-            int id = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Digite o novo título: ");
-            string titulo = Console.ReadLine();
-
-            Console.Write("Digite o novo gênero: ");
-            string genero = Console.ReadLine();
-
-            Console.Write("Digite o novo ano: ");
-            int ano = Convert.ToInt32(Console.ReadLine());
-
-            MySqlConnection banco = conexao.Conectar();
-
-            banco.Open();
-
-            string sql = "UPDATE filmes SET titulo = @titulo, genero = @genero, ano = @ano WHERE id = @id";
-
-            MySqlCommand comando = new MySqlCommand(sql, banco);
-
-            comando.Parameters.AddWithValue("@id", id);
-            comando.Parameters.AddWithValue("@titulo", titulo);
-            comando.Parameters.AddWithValue("@genero", genero);
-            comando.Parameters.AddWithValue("@ano", ano);
-
-            int resultado = comando.ExecuteNonQuery();
-
-            banco.Close();
-
-            if (resultado > 0)
-            {
-                Console.WriteLine("Filme atualizado com sucesso!");
-            }
-            else
-            {
-                Console.WriteLine("Filme não encontrado.");
-            }
-        }
-
-        // EXCLUIR
-        else if (opcao == 5)
-        {
-            Console.Write("Digite o ID do filme: ");
-            int id = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Tem certeza que deseja excluir? (s/n): ");
-            string confirmacao = Console.ReadLine();
-
-            if (confirmacao.ToLower() == "s")
-            {
-                MySqlConnection banco = conexao.Conectar();
-
-                banco.Open();
-
-                string sql = "DELETE FROM filmes WHERE id = @id";
-
-                MySqlCommand comando = new MySqlCommand(sql, banco);
-
-                comando.Parameters.AddWithValue("@id", id);
-
-                int resultado = comando.ExecuteNonQuery();
-
-                banco.Close();
-
-                if (resultado > 0)
+                if (linhasAfetadas > 0)
                 {
-                    Console.WriteLine("Filme excluído com sucesso!");
+                    Console.WriteLine($"\nSucesso! O filme de ID {idAlvo} foi atualizado.");
                 }
                 else
                 {
-                    Console.WriteLine("Filme não encontrado.");
+                    Console.WriteLine("\nNenhum filme encontrado com esse ID.");
                 }
             }
-            else
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\nErro ao atualizar: {ex.Message}");
+        }
+    }
+
+    Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+    Console.ReadKey();
+}
+static void Deletar()
+{
+    Console.Clear();
+    Console.WriteLine("--- DELETAR FILME PELO ID (DELETE) ---");
+
+    Console.Write("Digite o ID do filme que deseja apagar permanentemente: ");
+    int idAlvo = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Tem certeza?(S/N) ");
+    string esco = Console.ReadLine()?.ToUpper();
+    if (esco == "S")
+        {
+            using (MySqlConnection conexao = new MySqlConnection(connectionString))
+        {
+            try
             {
-                Console.WriteLine("Exclusão cancelada.");
+                conexao.Open();
+            
+                string sql = "DELETE FROM filme WHERE id = @id";
+
+                using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+                {
+                    comando.Parameters.AddWithValue("@id", idAlvo);
+
+                    int linhasAfetadas = comando.ExecuteNonQuery();
+
+                    if (linhasAfetadas > 0)
+                    {
+                        Console.WriteLine($"\nSucesso! O filme com ID {idAlvo} foi excluído do banco de dados.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nNenhum filme foi encontrado com esse ID.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nErro ao deletar: {ex.Message}");
             }
         }
 
-        // SAIR
-        else if (opcao == 0)
-        {
-            Console.WriteLine("Programa encerrado.");
+        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+        Console.ReadKey();
         }
-
-        else
+    else if (esco == "N")
         {
-            Console.WriteLine("Opção inválida.");
+            Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+            Console.ReadKey();
+        }
+    else
+        {
+            Console.WriteLine("\nOpção invalida, Pressione qualquer tecla para voltar ao menu...");
+            Console.ReadKey();
+        }
+}
+static void BuscarPorNome()
+{
+    Console.Clear();
+    Console.WriteLine("--- BUSCAR FILME POR NOME ---");
+
+    Console.Write("Digite o nome (ou parte do nome) do filme: ");
+    string pesquisa = Console.ReadLine() ?? "";
+
+    using (MySqlConnection conexao = new MySqlConnection(connectionString))
+    {
+        try
+        {
+            conexao.Open();
+            // O LIKE permite buscar termos parciais "precisa tar entre %" (ex: "Minecraft" acha "Um filme Minecraft")
+            string sql = "SELECT id, titulo, genero, ano FROM filme WHERE titulo LIKE @pesquisa";
+
+            using (MySqlCommand comando = new MySqlCommand(sql, conexao))
+            {
+                // O "%" + pesquisa + "%" para combrar com o LIKE
+                comando.Parameters.AddWithValue("@pesquisa", "%" + pesquisa + "%");
+
+                using (MySqlDataReader leitor = comando.ExecuteReader())
+                {
+                    if (!leitor.HasRows)
+                    {
+                        Console.WriteLine("\nNenhum filme encontrado com esse termo.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\n--- Filmes Encontrados ---");
+                        while (leitor.Read())
+                        {
+                            int id = Convert.ToInt32(leitor["id"]);
+                            string t = leitor["titulo"].ToString() ?? "";
+                            string g = leitor["genero"].ToString() ?? "";
+                            DateTime dataBanco = Convert.ToDateTime(leitor["ano"]);
+                            DateOnly a = DateOnly.FromDateTime(dataBanco);
+
+                            Filme f = new Filme(id, t, g, a);
+                            Console.WriteLine(f.ToString());
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"\nErro ao buscar: {ex.Message}");
         }
     }
-    catch
-    {
-        Console.WriteLine("Digite um valor válido.");
-    }
 
-    if (opcao != 0)
-    {
-        Console.WriteLine("\nPressione ENTER para continuar...");
-        Console.ReadLine();
-    }
+    Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
+    Console.ReadKey();
 }
 
-
+}

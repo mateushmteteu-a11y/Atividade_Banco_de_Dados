@@ -1,3 +1,10 @@
+COMANDOS SQL:
+
+1- Como realizar o INSERT, SELECT, UPDATE, DELETE:
+. Se o comando retorna linhas de dados (SELECT) você irá usar ExecuteReader().
+Se o comando só altera dados, sem devolver alguma linha (INSERT, UPDATE, DELETE) você deverá usar ExecuteNonQuery(). Ele te devolve apenas um número: quantas linhas foram afetadas.
+
+
 CONSULTA DE DADOS:
 
 1- Como o C# recebe os dados retornados por um SELECT?
