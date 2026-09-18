@@ -44,8 +44,8 @@ class Program
                     Console.WriteLine("\nSaindo do sistema... Até logo!");
                     break;
                 default:
-                    Console.WriteLine("\nOpção inválida! Pressione qualquer tecla para tentar novamente.");
-                    Console.ReadKey();//tem que aperta uma tecla pro o sistema continua gostei tambem
+                    Console.WriteLine("\nOpção inválida! Pressione qualquer tecla para tentar novamente.🫂🧐😭🥶⛈️🧑‍🦼‍➡️😉🧑‍🎄🥙🚎🚑💘¯\\_( ͡° ͜ʖ ͡°)_/¯");
+                    Console.ReadKey();//tem que aperta uma tecla para o sistema continua gostei tambem
                     break;
             }
         }

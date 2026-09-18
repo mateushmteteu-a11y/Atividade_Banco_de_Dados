@@ -740,11 +740,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\pedro61685786\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\thomas61118746\\.nuget\\packages\\": {}
+>>>>>>> 8b97f433d646f8234f0dc75a0f7630b9f0695b9a
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
       "projectName": "Atividade_Banco_de_Dados",
       "projectPath": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
@@ -753,6 +758,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pedro61685786\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+      "projectName": "Atividade_Banco_de_Dados",
+      "projectPath": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+      "packagesPath": "C:\\Users\\thomas61118746\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\thomas61118746\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 8b97f433d646f8234f0dc75a0f7630b9f0695b9a
       ],
       "originalTargetFrameworks": [
         "net10.0"
