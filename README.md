@@ -10,3 +10,5 @@ Digitando "dotnet add package" no terminal
 Para o banco de dados copie do ronaldo.sql e cole no mysql
 
 Para rodar o sistema aperte Ctrl+j e digite dotnet run
+
+Atraves da connectionString o sistema pega informações do banco para se conectar e assim consegue executar os codigos
