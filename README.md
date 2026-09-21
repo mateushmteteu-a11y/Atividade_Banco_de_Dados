@@ -5,7 +5,7 @@ O banco de dados utilizado foi o Mysql
 
 O driver usado foi o MysqlConnector
 
-Digitando "dotnet add package" no terminal
+Digitando "dotnet add package MySqlConnector" no terminal
 
 Para o banco de dados copie do ronaldo.sql e cole no mysql
 
