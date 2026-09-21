@@ -20,7 +20,7 @@ class Program
             Console.WriteLine("0 - Sair");
             Console.Write("Escolha uma opção: ");
             
-            string opcao = Console.ReadLine();
+            string opcao = Console.ReadLine() ?? "";
 
             switch (opcao)
             {
@@ -84,7 +84,7 @@ class Program
 
 
         Console.Write("Data de Lançamento (DD/MM/AAAA): ");
-        DateOnly exAno = DateOnly.Parse(Console.ReadLine());
+        DateOnly exAno = DateOnly.Parse(Console.ReadLine() ?? DateTime.Now.ToString("dd/MM/yyyy"));
 
         Filme novoFilme = new Filme(0, exTitulo, exGenero, exAno);
 
@@ -139,8 +139,8 @@ class Program
                             while (leitor.Read())
                             {
                                 int idBanco = Convert.ToInt32(leitor["id"]);
-                                string t = leitor["titulo"].ToString();
-                                string g = leitor["genero"].ToString();
+                                string t = leitor["titulo"].ToString() ?? "";
+                                string g = leitor["genero"].ToString() ?? "";
                                 DateTime dataBanco = Convert.ToDateTime(leitor["ano"]);
                                 DateOnly a = DateOnly.FromDateTime(dataBanco);
                                 Filme f = new Filme(idBanco, t, g, a);
@@ -200,7 +200,7 @@ class Program
 
 
         Console.Write("Data de Lançamento (DD/MM/AAAA): ");
-        DateOnly novoAno = DateOnly.Parse(Console.ReadLine());
+        DateOnly novoAno = DateOnly.Parse(Console.ReadLine() ?? DateTime.Now.ToString("dd/MM/yyyy"));
 
 
     using (MySqlConnection conexao = new MySqlConnection(connectionString))
@@ -247,7 +247,7 @@ static void Deletar()
     Console.Write("Digite o ID do filme que deseja apagar permanentemente: ");
     int idAlvo = Convert.ToInt32(Console.ReadLine());
     Console.Write("Tem certeza?(S/N) ");
-    string esco = Console.ReadLine()?.ToUpper();
+    string esco = Console.ReadLine()?.ToUpper() ?? "";
     if (esco == "S")
         {
             using (MySqlConnection conexao = new MySqlConnection(connectionString))

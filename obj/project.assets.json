@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net10.0": {
       "BouncyCastle.Cryptography/2.6.2": {
@@ -740,19 +740,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pedro61685786\\.nuget\\packages\\": {}
+    "C:\\Users\\thomas61118746\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+      "projectUniqueName": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
       "projectName": "Atividade_Banco_de_Dados",
-      "projectPath": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
-      "packagesPath": "C:\\Users\\pedro61685786\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\obj\\",
+      "projectPath": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\Atividade_Banco_de_Dados.csproj",
+      "packagesPath": "C:\\Users\\thomas61118746\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thomas61118746\\Documents\\GitHub\\Atividade_Banco_de_Dados\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pedro61685786\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\thomas61118746\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -762,7 +762,6 @@
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {}
         }
@@ -777,11 +776,10 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.400"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net10.0": {
-        "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
           "MySql.Data": {
@@ -809,7 +807,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -1086,13 +1084,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\pedro61685786\\Documents\\GitHub\\Atividade_Banco_de_Dados\\obj\\project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
-    }
-  ]
+  }
 }
