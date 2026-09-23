@@ -95,7 +95,7 @@ class Program
                 conexao.Open();
                 string sql = "INSERT INTO filme (titulo, genero, ano) VALUES (@titulo, @genero, @ano)";//cria o camando para ser usado no banco
                 
-                using (MySqlCommand comando = new MySqlCommand(sql, conexao))//prepara o comando ao mysql
+                using (MySqlCommand comando = new MySqlCommand(sql, conexao))//criar algun como uma classe so que com o comando do mysql
                 {
                     comando.Parameters.AddWithValue("@titulo", novoFilme.Titulo);//atribui os valores
                     comando.Parameters.AddWithValue("@genero", novoFilme.Genero);
