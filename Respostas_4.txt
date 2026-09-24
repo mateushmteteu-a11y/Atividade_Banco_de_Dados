@@ -38,7 +38,7 @@ CONSULTA DE DADOS:
 SEGURANÇA:
 
 1- O que são parâmetros em comandos SQL e por que eles são importantes?
-. Privilégios são permissões para acessar e modificar o banco.
+. São place Holder para os atribudos que serão colocado neles, para evitar erros e facilitar o colocamentos de itens na tabela.
 
 2- Explique também o que pode acontecer quando um sistema monta comandos SQL diretamente utilizando textos digitados pelo usuário.
 . Textos deretos podem causar SQL INJECTION, permitindo comandos maliciosos no banco.

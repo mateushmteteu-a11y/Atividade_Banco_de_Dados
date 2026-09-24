@@ -84,7 +84,7 @@ class Program
 
 
         Console.Write("Data de Lançamento (DD/MM/AAAA): ");
-        DateOnly exAno = DateOnly.Parse(Console.ReadLine() ?? DateTime.Now.ToString("dd/MM/yyyy"));
+        DateOnly exAno = DateOnly.Parse(Console.ReadLine() ?? DateTime.Now.ToString("dd/MM/aaaa"));
 
         Filme novoFilme = new Filme(0, exTitulo, exGenero, exAno);
 
@@ -97,7 +97,7 @@ class Program
                 
                 using (MySqlCommand comando = new MySqlCommand(sql, conexao))//criar algun como uma classe so que com o comando do mysql
                 {
-                    comando.Parameters.AddWithValue("@titulo", novoFilme.Titulo);//atribui os valores
+                    comando.Parameters.AddWithValue("@titulo", novoFilme.Titulo);//atribui os valores ao comando
                     comando.Parameters.AddWithValue("@genero", novoFilme.Genero);
                     comando.Parameters.AddWithValue("@ano", novoFilme.Ano.ToDateTime(TimeOnly.MinValue));
 
@@ -200,7 +200,7 @@ class Program
 
 
         Console.Write("Data de Lançamento (DD/MM/AAAA): ");
-        DateOnly novoAno = DateOnly.Parse(Console.ReadLine() ?? DateTime.Now.ToString("dd/MM/yyyy"));
+        DateOnly novoAno = DateOnly.Parse(Console.ReadLine() ?? DateTime.Now.ToString("dd/MM/aaaa"));
 
 
     using (MySqlConnection conexao = new MySqlConnection(connectionString))
